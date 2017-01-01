@@ -5,7 +5,7 @@ var SmartWebSocket = (function() {
     };
 
     let makeGetter = (attributeName) => function() {
-        this.ws[attributeName]
+        return this.ws[attributeName]
     };
 
     let capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
