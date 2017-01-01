@@ -1,4 +1,4 @@
-let SmartWebSocket = (function() {
+var SmartWebSocket = (function() {
     let makeEventFunc = (eventName) => function(callback) {
         this.ws.addEventListener(eventName, (e) => this._invoke(callback, e), false);
         return this;
@@ -63,3 +63,4 @@ let SmartWebSocket = (function() {
 
     return SmartWebSocket;
 
+})();
