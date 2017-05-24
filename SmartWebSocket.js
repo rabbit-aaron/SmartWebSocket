@@ -1,4 +1,4 @@
-var SmartWebSocket = (function() {
+(function(){
     let makeEventFunc = (eventName) => function(callback) {
         this.ws.addEventListener(eventName, (e) => this._invoke(callback, e), false);
         return this;
@@ -28,9 +28,7 @@ var SmartWebSocket = (function() {
             if (this.isOpen()) {
                 this.ws.close();
             } else {
-                this.onOpen(function() {
-                    this.ws.close();
-                });
+                this.onOpen((e) => this.close());
             }
             return this;
         }
@@ -42,9 +40,7 @@ var SmartWebSocket = (function() {
             if (this.isOpen()) {
                 this.ws.send(message);
             } else {
-                this.onOpen(function() {
-                    this.ws.send(message);
-                });
+                this.onOpen((e) => this.send(message));
             }
             return this;
         }
@@ -61,6 +57,9 @@ var SmartWebSocket = (function() {
         SmartWebSocket.prototype['get' + capitalize(attributeName)] = makeGetter(attributeName)
     );
 
-    return SmartWebSocket;
-
+    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
+        module.exports = SmartWebSocket;
+    }else if(typeof window !== 'undefined'){
+        window.SmartWebSocket = SmartWebSocket;
+    }
 })();
