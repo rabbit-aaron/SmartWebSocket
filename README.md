@@ -2,7 +2,7 @@
 
 * onClose, onError, onMessage,onOpen (to attach event listener)
 * getBinaryType, getBufferedAmount, getExtensions, getProtocol, getReadyState, getUrl (to get websocket properties)
-* hasOpened (returns true if websocket is opened, else return false)
+* isOpen (returns true if websocket is opened, else return false)
 * close (close the websocket)
 * send(message) (send message to server)
 
